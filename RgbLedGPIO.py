@@ -20,11 +20,11 @@ class RgbLed:
 
 	def changeColour(self, red, green, blue):
 		if(red < 0 or red > 100):
-			raise ValueError('Value of red should be between 0 and 100'
+			raise ValueError('Value of red should be between 0 and 100')
 		if(green < 0 or green > 100):
-			raise ValueError('Value of green should be between 0 and 100'
-		if(blue < 0 or blue > 100)
-			raise ValueError('Value of blue should be between 0 and 100'
+			raise ValueError('Value of green should be between 0 and 100')
+		if(blue < 0 or blue > 100):
+			raise ValueError('Value of blue should be between 0 and 100')
 		
 		self._red = red
 		self._green = green
