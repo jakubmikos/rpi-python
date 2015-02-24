@@ -1,4 +1,4 @@
-import .RgbLedGPIO
+import RgbLedGPIO
 import time
 import RPi.GPIO as GPIO
 import sys
