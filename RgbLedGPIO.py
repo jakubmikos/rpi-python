@@ -25,9 +25,9 @@ class RgbLed:
 		self._green = green
 		self._blue = blue
 		if self._isOn:
-			self._pwmRed.ChangeDutyCycle(_red)
-			self._pwmGreen.ChangeDutyCycle(_green)
-			self._pwmBlue.ChangeDutyCycle(_blue)
+			self._pwmRed.ChangeDutyCycle(self._red)
+			self._pwmGreen.ChangeDutyCycle(self._green)
+			self._pwmBlue.ChangeDutyCycle(self._blue)
 
 	def toggle(self):
 		if self._isOn:
