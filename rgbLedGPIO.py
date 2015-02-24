@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class rgbLed:
+class RgbLed:
 	def __init__(self, rGPIO, gGPIO, bGPIO):
 		GPIO.setmode(GPIO.BCM)
 		
@@ -30,17 +30,19 @@ class rgbLed:
 		self._green = green
 		self._blue = blue
 
-		if _isOn:
-			_pwmRed.ChangeDutyCycle(_red)
-			_pwmGreen.ChangeDutyCycle(_green)
-			_pwmBlue.ChangeDutyCycle(_blue)
+		if self._isOn:
+			self._pwmRed.ChangeDutyCycle(_red)
+			self._pwmGreen.ChangeDutyCycle(_green)
+			self._pwmBlue.ChangeDutyCycle(_blue)
 
 	def toggle(self):
-		if _isOn:
-			_pwmRed.stop()
-			_pwmGreen.stop()
-			_pwmBlue.stop()
+		if self._isOn:
+			self._pwmRed.stop()
+			self._pwmGreen.stop()
+			self._pwmBlue.stop()
+			self._isOn = false
 		else:
-			pwmRed.start(_red)
-			pwmGreen.start(_green)
-			pwmBlue.start(_blue)
+			self._pwmRed.start(_red)
+			self._pwmGreen.start(_green)
+			self._pwmBlue.start(_blue)
+			self._isOn = true
