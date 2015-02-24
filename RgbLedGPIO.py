@@ -12,7 +12,7 @@ class RgbLed:
 		self._pwmGreen = GPIO.PWM(gGPIO, 500)
 		self._pwmBlue = GPIO.PWM(bGPIO, 500)
 
-		self._isOn = false
+		self._isOn = False
 
 		self._red = 0
 		self._green = 0
@@ -40,9 +40,9 @@ class RgbLed:
 			self._pwmRed.stop()
 			self._pwmGreen.stop()
 			self._pwmBlue.stop()
-			self._isOn = false
+			self._isOn = False
 		else:
 			self._pwmRed.start(_red)
 			self._pwmGreen.start(_green)
 			self._pwmBlue.start(_blue)
-			self._isOn = true
+			self._isOn = True
