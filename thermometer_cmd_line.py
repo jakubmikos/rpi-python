@@ -2,6 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time, math
+from RgbLedGPIO import RgbLed
 
 GPIO.setmode(GPIO.BCM)
 
@@ -47,9 +48,16 @@ def temp_from_r(R):
     inv_T = 1/t25 + 1/B * math.log(R/R0)
     T = 1/inv_T - t0
     return T * fiddle_factor
-try
+try:
+    led = RgbLed(18, 23, 24)
+    led.changeColour(0,100,0)
+    led.toggle()
     while True:
         temp_c = temp_from_r(read_resistance())
+        if temp_c > 25:
+            led.changeColour(100,0,0)
+	else:
+            led.changeColour(0,100,0)
         print "{:.2f}".format(temp_c)
 except KeyboardInterrupt:
     print 'end'
