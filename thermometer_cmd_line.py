@@ -8,6 +8,7 @@ GPIO.setmode(GPIO.BCM)
 
 a_pin = 25
 b_pin = 8
+buzzer_pin = 7
 
 fiddle_factor = 0.9;
 
@@ -48,6 +49,18 @@ def temp_from_r(R):
     inv_T = 1/t25 + 1/B * math.log(R/R0)
     T = 1/inv_T - t0
     return T * fiddle_factor
+
+def buzz(pitch, duration):
+    GPIO.setup(buzzer_pin, GIPO.OUT)
+    period = 1.0 / pitch
+    delay = period / 2
+    cycles = int(duration * pitch)
+    for i in range(cycles):
+        GPIO.output(buzzer_pin, True)
+        time.sleep(delay)
+        GPIO.output(buzzer_pin, False)
+        time.sleep(delay)
+
 try:
     led = RgbLed(18, 23, 24)
     led.changeColour(0,100,0)
@@ -56,6 +69,7 @@ try:
         temp_c = temp_from_r(read_resistance())
         if temp_c > 25:
             led.changeColour(100,0,0)
+            buzz(500, 0.3)
 	else:
             led.changeColour(0,100,0)
         print "{:.2f}".format(temp_c)
